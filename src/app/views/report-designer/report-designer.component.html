@@ -1,0 +1,89 @@
+<div class="report-designer">
+  <div class="report-workbench">
+    <div class="report-workbench-header flex-middle">
+      <div class="page-name">
+        报表名称：
+        <div
+          #nameRef
+          class="name"
+          [class.edit]="isEdit"
+          (input)="nameInput = $event.target.textContent"
+          [contentEditable]="isEdit"
+          [textContent]="nameInput"
+        ></div>
+        <button *ngIf="!isEdit" nz-button class="btn-border-less" (click)="onEditClick(nameRef)">
+          <i nz-icon nzType="edit"></i>
+        </button>
+        <ng-container *ngIf="isEdit">
+          <button nz-button nzType="link" (click)="onOkClick()">
+            <i nz-icon nzType="check"></i>
+          </button>
+          <button nz-button class="btn-border-less" (click)="onCancelClick()">
+            <i nz-icon nzType="close"></i>
+          </button>
+        </ng-container>
+      </div>
+      <div>
+        <button nz-button nzGhost class="btn-border-less" (click)="onSetPreview(true)">
+          <i nz-icon nzType="eye"></i>
+          预览
+        </button>
+        <button nz-button nzGhost class="btn-border-less">
+          <i nz-icon nzType="save"></i>
+          保存
+        </button>
+        <button *ngIf="!isPreview" nz-button nzGhost class="btn-border-less">
+          <i nz-icon nzType="close"></i>
+          关闭
+        </button>
+
+        <button *ngIf="isPreview" nz-button nzGhost class="btn-border-less" (click)="onSetPreview(false)">
+          <i nz-icon nzType="left"></i>
+          返回
+        </button>
+      </div>
+    </div>
+    <div class="report-workbench-main">
+      <div class="report-workbench-main-sider">
+        <div class="title-box">
+          <div>
+            <button
+              nz-button
+              nzSize="small"
+              nzGhost
+              class="btn-border-less"
+              nz-dropdown
+              nzTrigger="click"
+              [nzDropdownMenu]="menu"
+            >
+              <i nz-icon nzType="plus"></i>
+            </button>
+            <button nz-button nzSize="small" nzGhost class="btn-border-less" disabled>
+              <i nz-icon nzType="edit"></i>
+            </button>
+            <button nz-button nzSize="small" nzGhost class="btn-border-less" disabled>
+              <i nz-icon nzType="delete"></i>
+            </button>
+          </div>
+
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>SQL数据集</li>
+              <li nz-menu-item>API数据集</li>
+              <li nz-menu-item>JSON数据集</li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+
+        <nz-tabset nzSize="small" [nzAnimated]="false" class="flex-main">
+          <nz-tab nzTitle="模板数据集"></nz-tab>
+          <nz-tab nzTitle="全局数据集">得到的</nz-tab>
+        </nz-tabset>
+      </div>
+      <div class="report-workbench-main-workspace">
+        <div r-univer class="full-size"></div>
+      </div>
+      <div class="report-workbench-main-property"></div>
+    </div>
+  </div>
+</div>

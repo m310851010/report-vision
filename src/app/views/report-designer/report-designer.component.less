@@ -1,0 +1,103 @@
+@prefix: report;
+
+@editor: ~'@{prefix}-designer';
+
+.@{editor} {
+  height: 100%;
+  display: block;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+  }
+
+  .@{prefix}-workbench {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &-header{
+      height: 48px;
+      background-color: #fff;
+      width: 100%;
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      box-shadow:  2px 0 8px #0000003d;
+      z-index: 9;
+      justify-content: space-between;
+
+      .page-name{
+        display: flex;
+        align-items: center;
+        font-size: 17px;
+
+        .name {
+          outline: none;
+          padding: 0 7px;
+          max-width: 300px;
+          white-space: nowrap;
+          overflow: hidden;
+          &.edit {
+            border-bottom: 1px solid #9e9e9e;
+          }
+        }
+      }
+    }
+
+    &-main {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      position: relative;
+
+      &-sider {
+        width: 240px;
+        background-color: #fff;
+        overflow: auto;
+        position: relative;
+        z-index: 2;
+        border-right: 1px solid #d9d9d9;
+        display: flex;
+        flex-direction: column;
+      }
+
+      &-workspace {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        overflow: hidden;
+        box-sizing: border-box;
+        background-color: #fafafa;
+        position: relative;
+        z-index: 1;
+      }
+
+      &-property {
+        width: 375px;
+        background-color: #fff;
+        padding: 0 7px;
+        overflow: auto;
+        position: relative;
+        z-index: 2;
+        border-left: 1px solid #d9d9d9;
+      }
+    }
+  }
+}
+
+
+.title-box{
+  background-color: #f4f7fd;
+  height: 35px;
+  padding: 5px 10px;
+  line-height: 22px;
+  border-bottom: 1px solid #e6eaef;
+  align-items: center;
+  display: flex;
+}

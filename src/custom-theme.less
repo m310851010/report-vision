@@ -1,0 +1,120 @@
+@import 'ng-zorro-antd/ng-zorro-antd.variable.less';
+@import '@xmagic/nzx-antd/between/between.component.less';
+@import '@xmagic/nzx-antd/table/index.less';
+@import 'ng-zorro-antd/resizable/style/entry.less';
+
+@height-base: 30px;
+@height-lg: 40px;
+@height-sm: 20px;
+@form-item-margin-bottom: 20px;
+@line-height-base: 1.4;
+
+@blue-base: #0960bd;
+@outline-width: 0;
+@menu-item-vertical-margin: 0;
+@menu-item-height: 37px;
+@menu-inline-toplevel-item-height: @menu-item-height;
+@primary-color: @blue-base;
+@modal-header-padding-vertical: 10px;
+@modal-header-close-size: 43px;
+@layout-trigger-height: @menu-item-height;
+
+.@{dropdown-prefix-cls} {
+  background-color: @white;
+}
+
+/*/工具样式*/
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-main {
+  flex: 1;
+}
+
+.over-auto {
+  overflow: auto;
+}
+
+.flex-horizontal {
+  display: flex;
+}
+
+.zero-height {
+  height: 0;
+}
+.full-width {
+  width: 100%;
+}
+.full-height {
+  height: 100%;
+}
+
+.full-size {
+  height: 100%;
+  width: 100%;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.full-width-less {
+  min-width: 100%;
+}
+
+.full-height-less {
+  min-height: 100%;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-middle {
+  display: flex;
+  align-items: center;
+}
+
+.flex-center-middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*滚动条*/
+::-webkit-scrollbar {
+  width: 7px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #9093994d;
+  border-radius: 2px;
+  box-shadow: inset 0 0 6px #0003;
+}
