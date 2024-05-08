@@ -46,23 +46,10 @@
     <div class="report-workbench-main">
       <div class="report-workbench-main-sider">
         <div class="title-box">
+          <div class="flex-main">数据集</div>
           <div>
-            <button
-              nz-button
-              nzSize="small"
-              nzGhost
-              class="btn-border-less"
-              nz-dropdown
-              nzTrigger="click"
-              [nzDropdownMenu]="menu"
-            >
+            <button nz-button nzGhost class="btn-border-less" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
               <i nz-icon nzType="plus"></i>
-            </button>
-            <button nz-button nzSize="small" nzGhost class="btn-border-less" disabled>
-              <i nz-icon nzType="edit"></i>
-            </button>
-            <button nz-button nzSize="small" nzGhost class="btn-border-less" disabled>
-              <i nz-icon nzType="delete"></i>
             </button>
           </div>
 
@@ -76,12 +63,34 @@
         </div>
 
         <nz-tabset nzSize="small" [nzAnimated]="false" class="flex-main">
-          <nz-tab nzTitle="模板数据集"></nz-tab>
+          <nz-tab nzTitle="模板数据集">
+            <nz-collapse [nzBordered]="false">
+              <nz-collapse-panel
+                *ngFor="let panel of panels"
+                [nzHeader]="panel.name"
+                [nzActive]="panel.active"
+                class="ant-tree"
+              >
+                <div
+                  *ngFor="let item of panel.fieldList"
+                  class="ant-tree-node-content-wrapper nowrap"
+                  [class.ant-tree-node-selected]="selectedNode === item"
+                  (click)="selectedNode = item"
+                  r-draggable
+                  (dragStart)="ondragstart($event, item)"
+                  (dragEnd)="ondragEnd($event, item)"
+                  (dblclick)="onDblclick(item)"
+                >
+                  {{ item.fieldText }}
+                </div>
+              </nz-collapse-panel>
+            </nz-collapse>
+          </nz-tab>
           <nz-tab nzTitle="全局数据集">得到的</nz-tab>
         </nz-tabset>
       </div>
       <div class="report-workbench-main-workspace">
-        <div r-univer class="full-size"></div>
+        <div r-univer class="full-size" (mouseleave)="onMouseleave()"></div>
       </div>
       <div class="report-workbench-main-property"></div>
     </div>

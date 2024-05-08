@@ -21,18 +21,18 @@
     display: flex;
     flex-direction: column;
 
-    &-header{
+    &-header {
       height: 48px;
       background-color: #fff;
       width: 100%;
       padding: 0 25px;
       display: flex;
       align-items: center;
-      box-shadow:  2px 0 8px #0000003d;
+      box-shadow: 2px 0 8px #0000003d;
       z-index: 9;
       justify-content: space-between;
 
-      .page-name{
+      .page-name {
         display: flex;
         align-items: center;
         font-size: 17px;
@@ -65,6 +65,20 @@
         border-right: 1px solid #d9d9d9;
         display: flex;
         flex-direction: column;
+
+        .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap {
+          justify-content: center;
+        }
+
+        .dataset-node {
+          &:hover {
+            background-color: #f5f5f5;
+          }
+
+          &.active {
+            background-color: var(--ant-primary-1);
+          }
+        }
       }
 
       &-workspace {
@@ -91,13 +105,12 @@
   }
 }
 
-
-.title-box{
-  background-color: #f4f7fd;
-  height: 35px;
+.title-box {
+  height: 40px;
   padding: 5px 10px;
   line-height: 22px;
   border-bottom: 1px solid #e6eaef;
   align-items: center;
   display: flex;
+  justify-content: space-between;
 }

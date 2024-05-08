@@ -9,9 +9,11 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { UniverModule } from '../univer/univer.module';
+import { DraggableDirective } from './draggable.directive';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 
 @NgModule({
-  declarations: [ReportDesignerComponent],
+  declarations: [ReportDesignerComponent, DraggableDirective],
   imports: [
     CommonModule,
     ReportDesignerRoutingModule,
@@ -19,7 +21,8 @@ import { UniverModule } from '../univer/univer.module';
     NzTabsModule,
     NzCardModule,
     NzDropDownModule,
-    UniverModule
+    UniverModule,
+    NzCollapseModule
   ]
 })
 export class ReportDesignerModule {}
