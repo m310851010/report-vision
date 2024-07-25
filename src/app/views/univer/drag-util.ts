@@ -6,6 +6,7 @@ class DragUtil {
   dragStart = new Subject<DragData>();
   dragEnd = new Subject<DragData>();
   dblclick = new Subject<DragData>();
+  mouseenter = new Subject<void>();
   mouseleave = new Subject<void>();
 }
 

@@ -57,7 +57,6 @@ export class DragContext extends PubSubEvent {
   }
 
   public destroy(): void {
-    console.log('destroy drag context');
     this.off();
     this.dragHandler.removeEventListener('mousedown', this.onMouseDown);
     window.removeEventListener('mousemove', this.mouseMoveHandler);
@@ -67,6 +66,9 @@ export class DragContext extends PubSubEvent {
   }
 
   private onMouseDown(e: MouseEvent) {
+    if (e.button) {
+      return;
+    }
     this.state.currentX = this.state.originX = e.clientX;
     this.state.currentY = this.state.originY = e.clientY;
     const result = this.emit('beforeDrag', e);

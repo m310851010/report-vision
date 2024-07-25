@@ -1,5 +1,3 @@
-import { createDragDom } from './util';
-
 export interface DragData {
   dragging: boolean;
   originX: number;

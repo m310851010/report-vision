@@ -1,0 +1,160 @@
+<div class="title-box">单元格属性</div>
+
+<nz-tabset nzSize="small" class="flex-main tabs-center">
+  <nz-tab nzTitle="基本"><ng-container *ngTemplateOutlet="simpleTemplate"></ng-container></nz-tab>
+  <nz-tab nzTitle="数据过滤">数据过滤</nz-tab>
+  <nz-tab nzTitle="渲染">渲染</nz-tab>
+  <nz-tab nzTitle="其他">其他</nz-tab>
+</nz-tabset>
+
+<ng-template #simpleTemplate>
+  <div class="tab-padding query-form property-form">
+    <nz-form-item>
+      <nz-form-label>左父格</nz-form-label>
+      <nz-form-control>
+        <nz-select
+          [nzOptions]="nzOptions"
+          [(ngModel)]="leftCell"
+          (ngModelChange)="setLeftParentCell($event)"
+        ></nz-select>
+        <div *ngIf="leftCell === parentCellTypeCUSTOM" style="margin-top: 6px; display: flex">
+          <nz-select
+            class="flex-main"
+            nzShowSearch
+            [nzOptions]="cellOptions"
+            style="margin-right: 5px"
+            [(ngModel)]="leftCellValue.col"
+            (ngModelChange)="leftCellValueChange()"
+          ></nz-select>
+          <nz-select
+            class="flex-main"
+            nzShowSearch
+            [nzOptions]="rowOptions"
+            [(ngModel)]="leftCellValue.row"
+            (ngModelChange)="leftCellValueChange()"
+            style="margin-right: 3px"
+          ></nz-select>
+          <button nz-button><i nz-icon nzType="selection" class="big-icon"></i></button>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>上父格</nz-form-label>
+      <nz-form-control>
+        <nz-select [nzOptions]="nzOptions" [(ngModel)]="topCell" (ngModelChange)="setTopParentCell($event)"></nz-select>
+        <div *ngIf="topCell === parentCellTypeCUSTOM" style="margin-top: 6px; display: flex">
+          <nz-select
+            class="flex-main"
+            nzShowSearch
+            [nzOptions]="cellOptions"
+            style="margin-right: 5px"
+            [(ngModel)]="topCellValue.col"
+            (ngModelChange)="topCellValueChange()"
+          ></nz-select>
+          <nz-select
+            class="flex-main"
+            nzShowSearch
+            [nzOptions]="rowOptions"
+            [(ngModel)]="topCellValue.row"
+            (ngModelChange)="topCellValueChange()"
+            style="margin-right: 3px"
+          ></nz-select>
+          <button nz-button><i nz-icon nzType="selection" class="big-icon"></i></button>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzNoColon></nz-form-label>
+      <nz-form-control>
+        <nzx-checkbox
+          [nzxOptions]="spreadVOptions"
+          [(ngModel)]="spreadV"
+          (ngModelChange)="setCellConfig('spreadV', !!this.spreadV.length)"
+        ></nzx-checkbox>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzNoColon></nz-form-label>
+      <nz-form-control>
+        <nzx-checkbox
+          [nzxOptions]="spreadHOptions"
+          [(ngModel)]="spreadH"
+          (ngModelChange)="setCellConfig('spreadH', !!this.spreadH.length)"
+        ></nzx-checkbox>
+      </nz-form-control>
+    </nz-form-item>
+
+    <ng-container *ngIf="cell && cell.custom && cell.custom.dataset">
+      <nz-form-item>
+        <nz-form-label>数据集</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            nzShowSearch
+            [nzOptions]="dbOptions"
+            [(ngModel)]="db"
+            (ngModelChange)="onDatasetChange()"
+          ></nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>字段</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            nzShowSearch
+            [nzOptions]="fieldNameOptions"
+            [(ngModel)]="fieldName"
+            (ngModelChange)="onFieldNameChange()"
+          ></nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>扩展方向</nz-form-label>
+        <nz-form-control>
+          <nz-radio-group
+            [(ngModel)]="extensionDirection"
+            (ngModelChange)="setCellConfig('extensionDirection', extensionDirection, true)"
+            nzButtonStyle="solid"
+            class="full-width flex-horizontal"
+            style="font-size: 18px"
+          >
+            <label nz-radio-button [nzValue]="null" title="不扩展" class="big-icon">
+              <i nz-icon nzType="stop"></i>
+            </label>
+            <label nz-radio-button nzValue="v" title="纵向扩展" class="big-icon">
+              <i nz-icon nzType="border-horizontal"></i>
+            </label>
+            <label nz-radio-button nzValue="h" title="横向扩展" class="big-icon">
+              <i nz-icon nzType="border-verticle"></i>
+            </label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>展开后排序</nz-form-label>
+        <nz-form-control>
+          <nz-radio-group
+            [(ngModel)]="sortType"
+            (ngModelChange)="setCellConfig('sortType', sortType)"
+            nzButtonStyle="solid"
+            class="full-width flex-horizontal"
+          >
+            <label nz-radio-button [nzValue]="null" title="不排序" class="big-icon">
+              <i nz-icon nzType="stop"></i>
+            </label>
+            <label nz-radio-button nzValue="asc" title="升序" class="big-icon">
+              <i nz-icon nzType="sort-ascending"></i>
+            </label>
+            <label nz-radio-button nzValue="desc" title="降序" class="big-icon">
+              <i nz-icon nzType="sort-descending"></i>
+            </label>
+            <label nz-radio-button nzValue="custom" title="自定义" class="big-icon">
+              <i nz-icon nzType="form"></i>
+            </label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+    </ng-container>
+  </div>
+</ng-template>

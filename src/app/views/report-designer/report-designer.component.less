@@ -66,10 +66,6 @@
         display: flex;
         flex-direction: column;
 
-        .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap {
-          justify-content: center;
-        }
-
         .dataset-node {
           &:hover {
             background-color: #f5f5f5;
@@ -93,9 +89,8 @@
       }
 
       &-property {
-        width: 375px;
+        width: 300px;
         background-color: #fff;
-        padding: 0 7px;
         overflow: auto;
         position: relative;
         z-index: 2;
@@ -106,11 +101,19 @@
 }
 
 .title-box {
-  height: 40px;
-  padding: 5px 10px;
+  height: 32px;
+  padding: 0 10px;
   line-height: 22px;
   border-bottom: 1px solid #e6eaef;
   align-items: center;
   display: flex;
   justify-content: space-between;
+  font-weight: 500;
+}
+
+.tabs-center .ant-tabs-nav-wrap {
+  justify-content: center;
+}
+.ant-tabs-content {
+  height: 100%;
 }

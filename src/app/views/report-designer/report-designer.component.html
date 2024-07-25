@@ -62,7 +62,7 @@
           </nz-dropdown-menu>
         </div>
 
-        <nz-tabset nzSize="small" [nzAnimated]="false" class="flex-main">
+        <nz-tabset nzSize="small" [nzAnimated]="false" class="flex-main tabs-center">
           <nz-tab nzTitle="模板数据集">
             <nz-collapse [nzBordered]="false">
               <nz-collapse-panel
@@ -90,9 +90,11 @@
         </nz-tabset>
       </div>
       <div class="report-workbench-main-workspace">
-        <div r-univer class="full-size" (mouseleave)="onMouseleave()"></div>
+        <div r-univer class="full-size" (mouseleave)="onMouseleave()" (mouseenter)="onMouseenter()"></div>
       </div>
-      <div class="report-workbench-main-property"></div>
+      <div class="report-workbench-main-property">
+        <r-cell-property></r-cell-property>
+      </div>
     </div>
   </div>
 </div>
